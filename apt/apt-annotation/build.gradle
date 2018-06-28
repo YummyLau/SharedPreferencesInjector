@@ -1,0 +1,13 @@
+apply plugin: 'java-library'
+
+dependencies {
+    "$implementation" fileTree(dir: 'libs', include: ['*.jar'])
+}
+
+sourceCompatibility = config.java_source_version
+targetCompatibility = config.java_target_version
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+

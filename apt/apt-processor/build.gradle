@@ -1,0 +1,17 @@
+apply plugin: 'java-library'
+
+dependencies {
+    "$implementation" fileTree(dir: 'libs', include: ['*.jar'])
+    "$implementation" deps.auto.service
+    "$implementation" deps.poet.java
+    "$implementation" deps.auto.common
+    "$implementation" project(path: ':apt-annotation')
+}
+
+sourceCompatibility = config.java_source_version
+targetCompatibility = config.java_target_version
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+

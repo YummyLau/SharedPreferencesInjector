@@ -1,0 +1,29 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion config.compile_sdk_version
+
+    defaultConfig {
+        minSdkVersion config.min_sdk_version
+        targetSdkVersion config.target_sdk_version
+        versionCode config.version_code
+        versionName config.version_name
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    "$implementation" fileTree(dir: 'libs', include: ['*.jar'])
+    "$api" project(":apt-annotation")
+    "$implementation" deps.support.annotations
+}
