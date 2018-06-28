@@ -19,6 +19,7 @@ public class SharedPreferenceInjector {
     private static final String TAG = SharedPreferenceInjector.class.getSimpleName();
     private static Context sApplicationContext;
     private static HashMap<String, WeakReference<SharedPreferenceInjector>> sInstances = new HashMap<>();
+    private static boolean init = false;
 
 
     private SharedPreferences mSharedPreferences;
@@ -31,7 +32,10 @@ public class SharedPreferenceInjector {
         if (context == null) {
             throw new RuntimeException(TAG + "#init: context can't be null !");
         }
-        sApplicationContext = context;
+        if (!init) {
+            init = true;
+            sApplicationContext = context;
+        }
     }
 
     public static SharedPreferenceInjector getInstance(@NonNull String preferenceName) {
@@ -39,6 +43,9 @@ public class SharedPreferenceInjector {
     }
 
     public static SharedPreferenceInjector getInstance(String preferenceName, int mode) {
+        if (sApplicationContext == null) {
+            throw new RuntimeException(TAG + "#getInstance should be invoked before invoking #init !");
+        }
         WeakReference<SharedPreferenceInjector> weakReference = sInstances.get(preferenceName);
         SharedPreferenceInjector sharedPreferenceUtil = weakReference == null ? null : weakReference.get();
         if (sharedPreferenceUtil == null) {

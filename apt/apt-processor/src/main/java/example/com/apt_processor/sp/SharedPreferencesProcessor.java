@@ -147,7 +147,7 @@ public class SharedPreferencesProcessor extends AbstractProcessor {
         MethodSpec.Builder getMethod = MethodSpec.methodBuilder(methodInfo.methodName)
                 .addModifiers(Modifier.PUBLIC, Modifier.FINAL, Modifier.STATIC);
 
-        StringBuffer stringBuffer = new StringBuffer("return example.com.apt_code.SharedPreferenceUtil.getInstance(" + name + ")");
+        StringBuffer stringBuffer = new StringBuffer("return example.com.apt_code.SharedPreferenceInjector.getInstance(" + name + ")");
         stringBuffer.append("." + methodInfo.buildSpMethod + "(" + "\"" + methodInfo.key + "\"" + "," + DEFAULT_VALUE + ")");
 
         getMethod.returns(methodInfo.returnType);
@@ -166,7 +166,7 @@ public class SharedPreferencesProcessor extends AbstractProcessor {
         MethodSpec.Builder putMethod = MethodSpec.methodBuilder(methodInfo.methodName)
                 .addModifiers(Modifier.PUBLIC, Modifier.FINAL, Modifier.STATIC);
 
-        StringBuffer stringBuffer = new StringBuffer("return example.com.apt_code.SharedPreferenceUtil.getInstance(" + name + ")");
+        StringBuffer stringBuffer = new StringBuffer("return example.com.apt_code.SharedPreferenceInjector.getInstance(" + name + ")");
         stringBuffer.append("." + methodInfo.buildSpMethod + "(" + "\"" + methodInfo.key + "\"" + "," + VALUE + ")");
 
         putMethod.returns(methodInfo.returnType);
@@ -185,7 +185,7 @@ public class SharedPreferencesProcessor extends AbstractProcessor {
         MethodSpec.Builder putMethod = MethodSpec.methodBuilder(methodInfo.methodName)
                 .addModifiers(Modifier.PUBLIC, Modifier.FINAL, Modifier.STATIC);
 
-        StringBuffer stringBuffer = new StringBuffer("example.com.apt_code.SharedPreferenceUtil.getInstance(" + name + ")");
+        StringBuffer stringBuffer = new StringBuffer("example.com.apt_code.SharedPreferenceInjector.getInstance(" + name + ")");
         stringBuffer.append("." + methodInfo.buildSpMethod + "(" + "\"" + methodInfo.key + "\"" + "," + VALUE + ")");
 
         putMethod.returns(methodInfo.returnType);
@@ -200,7 +200,7 @@ public class SharedPreferencesProcessor extends AbstractProcessor {
         MethodSpec.Builder putMethod = MethodSpec.methodBuilder(methodInfo.methodName)
                 .addModifiers(Modifier.PUBLIC, Modifier.FINAL, Modifier.STATIC);
 
-        StringBuffer stringBuffer = new StringBuffer("return example.com.apt_code.SharedPreferenceUtil.getInstance(" + name + ")");
+        StringBuffer stringBuffer = new StringBuffer("return example.com.apt_code.SharedPreferenceInjector.getInstance(" + name + ")");
         stringBuffer.append("." + methodInfo.buildSpMethod + "()");
 
         putMethod.returns(methodInfo.returnType);
@@ -214,7 +214,7 @@ public class SharedPreferencesProcessor extends AbstractProcessor {
         MethodSpec.Builder putMethod = MethodSpec.methodBuilder(methodInfo.methodName)
                 .addModifiers(Modifier.PUBLIC, Modifier.FINAL, Modifier.STATIC);
 
-        StringBuffer stringBuffer = new StringBuffer("example.com.apt_code.SharedPreferenceUtil.getInstance(" + name + ")");
+        StringBuffer stringBuffer = new StringBuffer("example.com.apt_code.SharedPreferenceInjector.getInstance(" + name + ")");
         stringBuffer.append("." + methodInfo.buildSpMethod + "()");
 
         putMethod.returns(methodInfo.returnType);
