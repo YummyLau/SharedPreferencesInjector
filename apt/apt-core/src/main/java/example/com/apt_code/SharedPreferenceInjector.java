@@ -1,40 +1,32 @@
 package example.com.apt_code;
 
-import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 
 import java.lang.ref.WeakReference;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Set;
 
 /**
- * 轻量级数据存储
  * Created by yummyLau on 2018/6/23.
  * Email: yummyl.lau@gmail.com
  * blog: yummylau.com
  */
 
-public class SharedPreferenceUtil {
+public class SharedPreferenceInjector {
 
-    private static final String TAG = SharedPreferenceUtil.class.getSimpleName();
+    private static final String TAG = SharedPreferenceInjector.class.getSimpleName();
     private static Context sApplicationContext;
-    private static HashMap<String, WeakReference<SharedPreferenceUtil>> sInstances = new HashMap<>();
+    private static HashMap<String, WeakReference<SharedPreferenceInjector>> sInstances = new HashMap<>();
 
 
     private SharedPreferences mSharedPreferences;
 
-    private SharedPreferenceUtil(@NonNull SharedPreferences sharedPreferences) {
+    private SharedPreferenceInjector(@NonNull SharedPreferences sharedPreferences) {
         mSharedPreferences = sharedPreferences;
     }
 
-    /**
-     * {@link Application#onCreate()} 初始化
-     *
-     * @param context
-     */
     public static void init(@NonNull Context context) {
         if (context == null) {
             throw new RuntimeException(TAG + "#init: context can't be null !");
@@ -42,15 +34,15 @@ public class SharedPreferenceUtil {
         sApplicationContext = context;
     }
 
-    public static SharedPreferenceUtil getInstance(@NonNull String preferenceName) {
+    public static SharedPreferenceInjector getInstance(@NonNull String preferenceName) {
         return getInstance(preferenceName, Context.MODE_PRIVATE);
     }
 
-    public static SharedPreferenceUtil getInstance(String preferenceName, int mode) {
-        WeakReference<SharedPreferenceUtil> weakReference = sInstances.get(preferenceName);
-        SharedPreferenceUtil sharedPreferenceUtil = weakReference == null ? null : weakReference.get();
+    public static SharedPreferenceInjector getInstance(String preferenceName, int mode) {
+        WeakReference<SharedPreferenceInjector> weakReference = sInstances.get(preferenceName);
+        SharedPreferenceInjector sharedPreferenceUtil = weakReference == null ? null : weakReference.get();
         if (sharedPreferenceUtil == null) {
-            sharedPreferenceUtil = new SharedPreferenceUtil(sApplicationContext.getSharedPreferences(preferenceName, mode));
+            sharedPreferenceUtil = new SharedPreferenceInjector(sApplicationContext.getSharedPreferences(preferenceName, mode));
             sInstances.put(preferenceName, new WeakReference<>(sharedPreferenceUtil));
         }
         return sharedPreferenceUtil;
