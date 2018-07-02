@@ -1,4 +1,4 @@
-package  example.com.apt_annotation.sp;
+package com.effective.android.annotation.sp;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

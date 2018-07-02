@@ -5,7 +5,8 @@ dependencies {
     "$implementation" deps.auto.service
     "$implementation" deps.poet.java
     "$implementation" deps.auto.common
-    "$implementation" project(path: ':apt-annotation')
+//    "$implementation" project(path: ':apt-annotation')
+    "$implementation" 'com.effective.android:sp-annotation:1.0.0'
 }
 
 sourceCompatibility = config.java_source_version
@@ -14,4 +15,3 @@ targetCompatibility = config.java_target_version
 tasks.withType(JavaCompile) {
     options.encoding = "UTF-8"
 }
-

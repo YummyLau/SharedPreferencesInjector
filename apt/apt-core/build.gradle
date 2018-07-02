@@ -3,6 +3,11 @@ apply plugin: 'com.android.library'
 android {
     compileSdkVersion config.compile_sdk_version
 
+    lintOptions {
+        abortOnError false
+    }
+
+
     defaultConfig {
         minSdkVersion config.min_sdk_version
         targetSdkVersion config.target_sdk_version
@@ -24,6 +29,7 @@ android {
 
 dependencies {
     "$implementation" fileTree(dir: 'libs', include: ['*.jar'])
-    "$api" project(":apt-annotation")
     "$implementation" deps.support.annotations
+//    "$api" project(path: ':apt-annotation')
+    "$api" 'com.effective.android:sp-annotation:1.0.0'
 }

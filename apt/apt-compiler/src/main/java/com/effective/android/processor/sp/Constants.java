@@ -1,4 +1,4 @@
-package example.com.apt_processor.sp;
+package com.effective.android.processor.sp;
 
 /**
  * 常量管理
@@ -11,6 +11,7 @@ public class Constants {
     public static final String VALUE = "value";
     public static final String DEFAULT_VALUE = "defaultValue";
     public static final String MODULE_NAME = "moduleName";
+    public static final String INJECTOR_PATH = "com.effective.android.core.sp.SharedPreferenceInjector";
 
     public static final String CLASS_NAME_APPEND = "_SPHelper";
     public static final String GET_START = "get";

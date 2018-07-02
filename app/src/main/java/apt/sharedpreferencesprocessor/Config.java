@@ -1,9 +1,12 @@
 package apt.sharedpreferencesprocessor;
 
+
+import com.effective.android.annotation.sp.SharedPreferencesField;
+import com.effective.android.annotation.sp.SharedPreferencesFile;
+
 import java.util.Set;
 
-import example.com.apt_annotation.sp.SharedPreferencesField;
-import example.com.apt_annotation.sp.SharedPreferencesFile;
+
 
 /**
  * test for spprocessor

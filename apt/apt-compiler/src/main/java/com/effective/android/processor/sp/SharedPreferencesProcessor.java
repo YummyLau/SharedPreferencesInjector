@@ -1,5 +1,7 @@
-package example.com.apt_processor.sp;
+package com.effective.android.processor.sp;
 
+import com.effective.android.annotation.sp.SharedPreferencesField;
+import com.effective.android.annotation.sp.SharedPreferencesFile;
 import com.google.auto.service.AutoService;
 import com.squareup.javapoet.ClassName;
 import com.squareup.javapoet.CodeBlock;
@@ -29,11 +31,10 @@ import javax.lang.model.element.VariableElement;
 import javax.lang.model.util.Elements;
 import javax.tools.Diagnostic;
 
-import example.com.apt_annotation.sp.SharedPreferencesField;
-import example.com.apt_annotation.sp.SharedPreferencesFile;
+import static com.effective.android.processor.sp.Constants.DEFAULT_VALUE;
+import static com.effective.android.processor.sp.Constants.INJECTOR_PATH;
+import static com.effective.android.processor.sp.Constants.VALUE;
 
-import static example.com.apt_processor.sp.Constants.DEFAULT_VALUE;
-import static example.com.apt_processor.sp.Constants.VALUE;
 
 /**
  * SharedPreferences生成代码
@@ -147,7 +148,7 @@ public class SharedPreferencesProcessor extends AbstractProcessor {
         MethodSpec.Builder getMethod = MethodSpec.methodBuilder(methodInfo.methodName)
                 .addModifiers(Modifier.PUBLIC, Modifier.FINAL, Modifier.STATIC);
 
-        StringBuffer stringBuffer = new StringBuffer("return example.com.apt_code.SharedPreferenceInjector.getInstance(" + name + ")");
+        StringBuffer stringBuffer = new StringBuffer("return " + INJECTOR_PATH + ".getInstance(" + name + ")");
         stringBuffer.append("." + methodInfo.buildSpMethod + "(" + "\"" + methodInfo.key + "\"" + "," + DEFAULT_VALUE + ")");
 
         getMethod.returns(methodInfo.returnType);
@@ -166,7 +167,7 @@ public class SharedPreferencesProcessor extends AbstractProcessor {
         MethodSpec.Builder putMethod = MethodSpec.methodBuilder(methodInfo.methodName)
                 .addModifiers(Modifier.PUBLIC, Modifier.FINAL, Modifier.STATIC);
 
-        StringBuffer stringBuffer = new StringBuffer("return example.com.apt_code.SharedPreferenceInjector.getInstance(" + name + ")");
+        StringBuffer stringBuffer = new StringBuffer("return " + INJECTOR_PATH + ".getInstance(" + name + ")");
         stringBuffer.append("." + methodInfo.buildSpMethod + "(" + "\"" + methodInfo.key + "\"" + "," + VALUE + ")");
 
         putMethod.returns(methodInfo.returnType);
@@ -185,7 +186,7 @@ public class SharedPreferencesProcessor extends AbstractProcessor {
         MethodSpec.Builder putMethod = MethodSpec.methodBuilder(methodInfo.methodName)
                 .addModifiers(Modifier.PUBLIC, Modifier.FINAL, Modifier.STATIC);
 
-        StringBuffer stringBuffer = new StringBuffer("example.com.apt_code.SharedPreferenceInjector.getInstance(" + name + ")");
+        StringBuffer stringBuffer = new StringBuffer(INJECTOR_PATH + ".getInstance(" + name + ")");
         stringBuffer.append("." + methodInfo.buildSpMethod + "(" + "\"" + methodInfo.key + "\"" + "," + VALUE + ")");
 
         putMethod.returns(methodInfo.returnType);
@@ -200,7 +201,7 @@ public class SharedPreferencesProcessor extends AbstractProcessor {
         MethodSpec.Builder putMethod = MethodSpec.methodBuilder(methodInfo.methodName)
                 .addModifiers(Modifier.PUBLIC, Modifier.FINAL, Modifier.STATIC);
 
-        StringBuffer stringBuffer = new StringBuffer("return example.com.apt_code.SharedPreferenceInjector.getInstance(" + name + ")");
+        StringBuffer stringBuffer = new StringBuffer("return " + INJECTOR_PATH + ".getInstance(" + name + ")");
         stringBuffer.append("." + methodInfo.buildSpMethod + "()");
 
         putMethod.returns(methodInfo.returnType);
@@ -214,7 +215,7 @@ public class SharedPreferencesProcessor extends AbstractProcessor {
         MethodSpec.Builder putMethod = MethodSpec.methodBuilder(methodInfo.methodName)
                 .addModifiers(Modifier.PUBLIC, Modifier.FINAL, Modifier.STATIC);
 
-        StringBuffer stringBuffer = new StringBuffer("example.com.apt_code.SharedPreferenceInjector.getInstance(" + name + ")");
+        StringBuffer stringBuffer = new StringBuffer(INJECTOR_PATH + ".getInstance(" + name + ")");
         stringBuffer.append("." + methodInfo.buildSpMethod + "()");
 
         putMethod.returns(methodInfo.returnType);

@@ -1,4 +1,4 @@
-package example.com.apt_code;
+package com.effective.android.core.sp;
 
 import android.content.Context;
 import android.content.SharedPreferences;

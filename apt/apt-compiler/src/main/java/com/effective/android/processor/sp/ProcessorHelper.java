@@ -1,5 +1,6 @@
-package example.com.apt_processor.sp;
+package com.effective.android.processor.sp;
 
+import com.effective.android.annotation.sp.SharedPreferencesFile;
 import com.squareup.javapoet.ClassName;
 import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.ParameterizedTypeName;
@@ -11,8 +12,6 @@ import java.util.Set;
 
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.element.VariableElement;
-
-import example.com.apt_annotation.sp.SharedPreferencesFile;
 
 
 /**

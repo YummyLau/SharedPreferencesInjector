@@ -9,9 +9,8 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/apt/apt-annotation" />
+            <option value="$PROJECT_DIR$/apt/apt-compiler" />
             <option value="$PROJECT_DIR$/apt/apt-core" />
-            <option value="$PROJECT_DIR$/apt/apt-processor" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

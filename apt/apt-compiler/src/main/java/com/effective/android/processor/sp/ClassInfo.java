@@ -1,4 +1,4 @@
-package example.com.apt_processor.sp;
+package com.effective.android.processor.sp;
 
 /**
  * 构建class参数
