@@ -10,7 +10,7 @@ README: [English](https://github.com/YummyLau/SharedPreferencesInjector/blob/mas
 
 In daily development you may define a SharedPreferencesUtils helper for handling lightweight data storage, but there are still a large number of static variables in the project that identify a key for a piece of data or a piece of code that handles storage. It is hoped that a certain class of lightweight data can be aggregated and processed in a unified manner, and the writing of a large amount of duplicate code is reduced.
 
-*SharedPreferencesInjector* Get custom annotations at compile time through APT and javaPoet technology to generate the corresponding SharedPreferences Helper operation class to help solve the above problems.
+*SharedPreferencesInjector* get custom annotations at compile time through APT and javaPoet technology to generate the corresponding SharedPreferences Helper operation class to help solve the above problems.
 
 * Define a class that aggregates certain configurations
 
@@ -36,9 +36,9 @@ public class Config {
 SharedPreferenceInjector.init(this);
 
 //operation Config data
-boolean result = Config_SPHelper.put_configKey("newKey");       //同步操作
-Config_SPHelper.put_configKey_async("newKey");                  //异步操作
-Config_SPHelper.get_configKey("defaultKey");                    //获取
+boolean result = Config_SPHelper.put_configKey("newKey");       //synchronous operation
+Config_SPHelper.put_configKey_async("newKey");                  //ssynchronous operation
+Config_SPHelper.get_configKey("defaultKey");                    //obtain data
 
 //clear Config data
 Config_SPHelper.clear();
