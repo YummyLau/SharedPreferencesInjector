@@ -4,94 +4,55 @@
 ![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
 ![Size](https://img.shields.io/badge/size-11K-brightgreen.svg)
 
-#### 用于做什么
-*SharedPreferencesInjector* 通过 APT 及 javaPoet 在编译期获取自定义注解生成对应 SharedPreferences Helper操作类，减少编写大量重复代码 。
+README: [English](https://github.com/YummyLau/SharedPreferencesInjector/blob/master/README.md) | [中文](https://github.com/YummyLau/SharedPreferencesInjector/blob/master/README-zh.md)
 
-在所需要的模块中定义一个配置类，用于存储ShaoredPreferences想要存储的数据，举个例子
+#### What to do
+
+In daily development you may define a SharedPreferencesUtils helper for handling lightweight data storage, but there are still a large number of static variables in the project that identify a key for a piece of data or a piece of code that handles storage. It is hoped that a certain class of lightweight data can be aggregated and processed in a unified manner, and the writing of a large amount of duplicate code is reduced.
+
+*SharedPreferencesInjector* Get custom annotations at compile time through APT and javaPoet technology to generate the corresponding SharedPreferences Helper operation class to help solve the above problems.
+
+* Define a class that aggregates certain configurations
+
 ```
-@SharedPreferencesFile(fileName = "filename_if_you_want")
+@SharedPreferencesFile(fileName = "filename_if_you_want")       //can set the corresponding stored SharedPreferences file name
 public class Config {
 
-    @SharedPreferencesField(key = "key_if_you_want")
+    @SharedPreferencesField(key = "key_if_you_want")            //define the key you need. If you don't set it, the default is the variable name.
     public int readCount;
 
     @SharedPreferencesField()
     public String configKey;
 
-    @SharedPreferencesField(key = "user_followed")
+    @SharedPreferencesField()
     public Set<String> setStringData;
 }
 ```
-编译项目后得到
+
+* After compiling, the generated class corresponding to {class name}_SPHelper, you can directly call the operation
+
 ```
-public final class Config_SPHelper {
-  static final String FILENAME_IF_YOU_WANT = "apt.sharedpreferencesprocessor.filename_if_you_want";
-
-  public static final int get_key_if_you_want(int defaultValue) {
-    return com.effective.android.core.sp.SharedPreferenceInjector.getInstance(FILENAME_IF_YOU_WANT).getInt("key_if_you_want",defaultValue);
-  }
-
-  public static final boolean put_key_if_you_want(int value) {
-    return com.effective.android.core.sp.SharedPreferenceInjector.getInstance(FILENAME_IF_YOU_WANT).putInt("key_if_you_want",value);
-  }
-
-  public static final void put_key_if_you_want_async(int value) {
-    com.effective.android.core.sp.SharedPreferenceInjector.getInstance(FILENAME_IF_YOU_WANT).asyncPutInt("key_if_you_want",value);
-  }
-
-  public static final String get_configKey(String defaultValue) {
-    return com.effective.android.core.sp.SharedPreferenceInjector.getInstance(FILENAME_IF_YOU_WANT).getString("configKey",defaultValue);
-  }
-
-  public static final boolean put_configKey(String value) {
-    return com.effective.android.core.sp.SharedPreferenceInjector.getInstance(FILENAME_IF_YOU_WANT).putString("configKey",value);
-  }
-
-  public static final void put_configKey_async(String value) {
-    com.effective.android.core.sp.SharedPreferenceInjector.getInstance(FILENAME_IF_YOU_WANT).asyncPutString("configKey",value);
-  }
-
-  public static final Set<String> get_user_followed(Set<String> defaultValue) {
-    return com.effective.android.core.sp.SharedPreferenceInjector.getInstance(FILENAME_IF_YOU_WANT).getStringSet("user_followed",defaultValue);
-  }
-
-  public static final boolean put_user_followed(Set<String> value) {
-    return com.effective.android.core.sp.SharedPreferenceInjector.getInstance(FILENAME_IF_YOU_WANT).putStringSet("user_followed",value);
-  }
-
-  public static final void put_user_followed_async(Set<String> value) {
-    com.effective.android.core.sp.SharedPreferenceInjector.getInstance(FILENAME_IF_YOU_WANT).asyncPutStringSet("user_followed",value);
-  }
-
-  public static final boolean clear() {
-    return com.effective.android.core.sp.SharedPreferenceInjector.getInstance(FILENAME_IF_YOU_WANT).clear();
-  }
-
-  public static final void clear_async() {
-    com.effective.android.core.sp.SharedPreferenceInjector.getInstance(FILENAME_IF_YOU_WANT).asyncClear();
-  }
-}
-```
-而你只需要在项目使用你定义的 config数据
-```
-//建议在application中初始化
+//global initialization once, it is recommended to call in application#create
 SharedPreferenceInjector.init(this);
 
-//操作config数据
-boolean result = Config_SPHelper.put_configKey("newKey");
-Config_SPHelper.put_configKey_async("newKey");
-Config_SPHelper.get_configKey("defaultKey");
+//operation Config data
+boolean result = Config_SPHelper.put_configKey("newKey");       //同步操作
+Config_SPHelper.put_configKey_async("newKey");                  //异步操作
+Config_SPHelper.get_configKey("defaultKey");                    //获取
 
 //clear Config data
 Config_SPHelper.clear();
 Config_SPHelper.clear_async();
 ```
 
-#### 如何引用
-app build.gradle 添加
+#### How to use
+Add dependencies in module **build.gradle** file
 ```
 annotationProcessor 'com.effective.android:sp-compiler:1.0.0'   
 compile 'com.effective.android:sp-core:1.0.0'
 ```
 
-协议
+#### Expect
+The project was written only to improve the efficiency of day-to-day development and focus on the business. Javapoet is a good thing, you can also refer to the three modules under the apt file, and use annotation extension to meet your own project needs.
+
+If you have a better practice or suggestions, please write to yummyl.lau@gmail.com.

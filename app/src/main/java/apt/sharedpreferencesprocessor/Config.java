@@ -14,37 +14,16 @@ import java.util.Set;
  * Email: yummyl.lau@gmail.com
  * blog: yummylau.com
  */
-@SharedPreferencesFile(fileName = "config_file")
+@SharedPreferencesFile(fileName = "filename_if_you_want")
 public class Config {
 
-    @SharedPreferencesField()
-    public int intData;
+    @SharedPreferencesField(key = "key_if_you_want")
+    public int readCount;
 
     @SharedPreferencesField()
-    public Integer IntegerData;
+    public String configKey;
 
-    @SharedPreferencesField()
-    public float floatData;
-
-    @SharedPreferencesField()
-    public Float FloatData;
-
-    @SharedPreferencesField()
-    public boolean booleanData;
-
-    @SharedPreferencesField()
-    public Boolean BooleanData;
-
-    @SharedPreferencesField()
-    public long longData;
-
-    @SharedPreferencesField()
-    public Long LongData;
-
-    @SharedPreferencesField
-    public String stringData;
-
-    @SharedPreferencesField
+    @SharedPreferencesField(key = "user_followed")
     public Set<String> setStringData;
 
 }
