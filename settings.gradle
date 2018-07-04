@@ -1,6 +1,6 @@
-include ':app' , ':apt-compiler', ':apt-core'
+include ':app'
 
-//,':apt-annotation'
+//, ':apt-compiler', ':apt-core' ,':apt-annotation'
 //project(':apt-annotation').projectDir = new File("apt/apt-annotation")
-project(':apt-compiler').projectDir = new File("apt/apt-compiler")
-project(':apt-core').projectDir = new File("apt/apt-core")
+//project(':apt-compiler').projectDir = new File("apt/apt-compiler")
+//project(':apt-core').projectDir = new File("apt/apt-core")
