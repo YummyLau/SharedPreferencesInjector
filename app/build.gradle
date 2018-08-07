@@ -25,9 +25,10 @@ dependencies {
     "$implementation" 'com.android.support:appcompat-v7:27.1.1'
     "$implementation" 'com.android.support.constraint:constraint-layout:1.1.2'
 
-    "$api" project(":apt-core")
-    annotationProcessor project(':apt-compiler')
-//    annotationProcessor "com.effective.android:sp-compiler:1.0.0"
-//    "$implementation" "com.effective.android:sp-core:1.0.0"
-//    "$implementation" 'com.effective.android:sp-annotation:1.0.1'
+//    "$api" project(":apt-core")
+//    annotationProcessor project(':apt-compiler')
+//    "$api" project(':apt-annotation')
+    annotationProcessor "com.effective.android:sp-compiler:1.0.1"
+    "$implementation" "com.effective.android:sp-core:1.0.1"
+    "$implementation" 'com.effective.android:sp-annotation:1.0.1'
 }

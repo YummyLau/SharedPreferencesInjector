@@ -31,5 +31,5 @@ dependencies {
     "$implementation" fileTree(dir: 'libs', include: ['*.jar'])
     "$implementation" deps.support.annotations
 //    "$api" project(path: ':apt-annotation')
-    "$api" 'com.effective.android:sp-annotation:1.0.0'
+//    "$api" 'com.effective.android:sp-annotation:1.0.1'
 }
